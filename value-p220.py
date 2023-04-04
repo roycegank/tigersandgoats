@@ -7,8 +7,27 @@ Description: GUI of the game using TKinter
 __author__ = "Cameron Canda and group"
 __status__ = "Dev"
 
-def allpossiblemoves(self, boardPositions-given, goatCount):
+from functions import positions
 
+# def allpossiblemoves(self, boardPositions-given, goatCount):
+
+class Game:
+    def __init__(self):
+        self.boardPositions = positions # a dictionary that represents the positions on the game board and their values. 
+                                        # The keys are the positions and the values can be either "O" (indicating a goat), 
+                                        # "X" (indicating a tiger), or None (indicating an empty position).
+        self.goatCount = 20
+        self.goatEaten = 0
+        self.selectedPiece = None
+
+    def allpossiblemovesGoats(self):
+        for i, (position, value) in enumerate(self.boardPositions.items()):
+            print(i, position, value)
+
+    def allpossiblemovesTigers(self):
+        tigerPositions = [k for k, v in self.boardPositions.items() if v == "X"]
+        for i, tiger in enumerate(tigerPositions):
+            print(i, tiger)
 
 def valueOfPosition(self, boardPositions-given, goatCount, goatEaten, *args):
         if self.goatCount == 0:
