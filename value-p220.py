@@ -20,14 +20,15 @@ class Game:
         self.goatEaten = 0
         self.selectedPiece = None
 
-    def allpossiblemovesGoats(self):
-        for i, (position, value) in enumerate(self.boardPositions.items()):
-            print(i, position, value)
+    def allpossiblemovesGoats(self, positions, goatCount):
+        for position, value in positions.items():
+            if value == "O":
+            print(position)
 
-    def allpossiblemovesTigers(self):
-        tigerPositions = [k for k, v in self.boardPositions.items() if v == "X"]
-        for i, tiger in enumerate(tigerPositions):
-            print(i, tiger)
+    def allpossiblemovesTigers(self, positions, tigerCount):
+        for position, value in positions.items():
+            if value == "X":
+            print(position)
 
 def valueOfPosition(self, boardPositions-given, goatCount, goatEaten, *args):
         if self.goatCount == 0:
