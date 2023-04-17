@@ -16,7 +16,7 @@ class Game:
         self.boardPositions = positions # a dictionary that represents the positions on the game board and their values. 
                                         # The keys are the positions and the values can be either "O" (indicating a goat), 
                                         # "X" (indicating a tiger), or None (indicating an empty position).
-        self.goatCount = 20
+        self.goatCount = 15
         self.goatEaten = 0
         self.selectedPiece = None
 
