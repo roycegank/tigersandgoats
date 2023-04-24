@@ -9,6 +9,31 @@ __status__ = "Dev"
 
 # from functions import positions
 
+# Initialize the adjacency matrix
+M = [[0] * 23 for _ in range(23)]
+
+# Define the positions on the board
+# @todo use for later
+# positions = ['b0', 'a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'b4', 'c1', 'c2', 'c3', 'c4', 'd1', 'd2', 'd3', 'd4', 'e1', 'e2', 'e3', 'e4', 'f1', 'f2', 'f3']
+
+# Define the adjacency relationships between positions
+adjacency = [('a1', 'a2'), ('a2', 'a1'), ('a2', 'a3'), ('a3', 'a2'),
+             ('b1', 'b2'), ('b2', 'b1'), ('b2', 'b3'), ('b3', 'b2'),
+             ('b3', 'b4'), ('b4', 'b3'), ('c1', 'c2'), ('c2', 'c1'),
+             ('c2', 'c3'), ('c3', 'c2'), ('c3', 'c4'), ('c4', 'c3'),
+             ('d1', 'd2'), ('d2', 'd1'), ('d2', 'd3'), ('d3', 'd2'),
+             ('d3', 'd4'), ('d4', 'd3'), ('e1', 'e2'), ('e2', 'e1'),
+             ('e2', 'e3'), ('e3', 'e2'), ('e3', 'e4'), ('e4', 'e3'),
+             ('f1', 'f2'), ('f2', 'f1'), ('f2', 'f3'), ('f3', 'f2')]
+
+# Fill in the adjacency matrix
+for p1, p2 in adjacency:
+    i = positions.index(p1)
+    j = positions.index(p2)
+    M[i][j] = 1
+    M[j][i] = 1
+
+
 class Game:
     def __init__(self):
         self.boardPositions = {
@@ -61,9 +86,12 @@ class Game:
                                 print(position + ' to ' + adjacentPosition)
 
     def allpossiblemovesTigers(self, positions, tigerCount):
+        M = [[0, 1, 0], [1, 0, 1], [0, 1, 0]]  # the adjacency matrix for the board
         for position, value in positions.items():
             if value == "X":
-                print(position)
+                row, col = self.getRowAndCol(position)
+                for i in range(-1, 2):
+                    for j in
 
 def valueOfPosition(self, boardPositions-given, goatCount, goatEaten, *args):
         if self.goatCount == 0:
