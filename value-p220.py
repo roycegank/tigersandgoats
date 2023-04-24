@@ -7,28 +7,63 @@ Description: GUI of the game using TKinter
 __author__ = "Cameron Canda and group"
 __status__ = "Dev"
 
-from functions import positions
-
-# def allpossiblemoves(self, boardPositions-given, goatCount):
+# from functions import positions
 
 class Game:
     def __init__(self):
-        self.boardPositions = positions # a dictionary that represents the positions on the game board and their values. 
-                                        # The keys are the positions and the values can be either "O" (indicating a goat), 
-                                        # "X" (indicating a tiger), or None (indicating an empty position).
+        self.boardPositions = {
+            'b0': None,'a1': None,'a2': None,'a3': None,
+            'b1': None,'b2': None,'b3': None,'b4': None,
+            'c1': None,'c2': None,'c3': None,'c4': None,
+            'd1': None,'d2': None,'d3': None,'d4': None,
+            'e1': None,'e2': None,'e3': None,'e4': None,
+            'f1': None,'f2': None,'f3': None
+            }
         self.goatCount = 20
         self.goatEaten = 0
         self.selectedPiece = None
-
+        
+    def getAdjacentPositions(self, position):
+        # This function returns a list of positions adjacent to the given position.
+        # It checks if each adjacent position is on the board and if it is empty.
+        row, col = self.getRowAndCol(position)
+        adjacentPositions = []
+        if row > 0 and self.boardPositions[self.getPosition(row-1, col)] is None:
+            adjacentPositions.append(self.getPosition(row-1, col))
+        if row < 4 and self.boardPositions[self.getPosition(row+1, col)] is None:
+            adjacentPositions.append(self.getPosition(row+1, col))
+        if col > 0 and self.boardPositions[self.getPosition(row, col-1)] is None:
+            adjacentPositions.append(self.getPosition(row, col-1))
+        if col < 2 and self.boardPositions[self.getPosition(row, col+1)] is None:
+            adjacentPositions.append(self.getPosition(row, col+1))
+        return adjacentPositions
+        
+    def getPosition(self, row, col):
+        # This function returns the position string for the given row and column.
+        return chr(97 + col) + str(row)
+    
+    def getRowAndCol(self, position):
+        # This function returns the row and column for the given position string.
+        col = ord(position[0]) - 97
+        row = int(position[1])
+        return row, col
+        
     def allpossiblemovesGoats(self, positions, goatCount):
+        M = [[0, 1, 0], [1, 0, 1], [0, 1, 0]]  # the adjacency matrix for the board
         for position, value in positions.items():
             if value == "O":
-            print(position)
+                row, col = self.getRowAndCol(position)
+                for i in range(-1, 2):
+                    for j in range(-1, 2):
+                        if M[i+1][j+1] == 1 and row+i >= 0 and row+i <= 4 and col+j >= 0 and col+j <= 2:
+                            adjacentPosition = self.getPosition(row+i, col+j)
+                            if self.boardPositions[adjacentPosition] is None:
+                                print(position + ' to ' + adjacentPosition)
 
     def allpossiblemovesTigers(self, positions, tigerCount):
         for position, value in positions.items():
             if value == "X":
-            print(position)
+                print(position)
 
 def valueOfPosition(self, boardPositions-given, goatCount, goatEaten, *args):
         if self.goatCount == 0:
