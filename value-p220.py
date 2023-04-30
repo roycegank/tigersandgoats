@@ -59,7 +59,7 @@ class Game:
             'e1': None,'e2': None,'e3': None,'e4': None,
             'f1': None,'f2': None,'f3': None
             }
-        self.goatCount = 20
+        self.goatCount = 15
         self.goatEaten = 0
         self.selectedPiece = None
         
